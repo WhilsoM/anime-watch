@@ -1,0 +1,25 @@
+@use './normalize.css' as *;
+
+:root {
+	--text-color: #000;
+	--bg-color: #fff;
+	--title-size: clamp(2rem, 2.5vw, 3rem);
+	--text-size: clamp(1.6rem, 2.5vw, 1.9rem);
+	--text-link-size: clamp(1.3rem, 2.5vw, 1.5rem);
+	--border-color: #000;
+	--border-radius-block: 1rem;
+	--border-radius-element: 0.5rem;
+}
+
+html {
+	font-size: 62.5%;
+}
+.container {
+	max-width: 1100px;
+	margin: 0 auto;
+	padding: 0 0.5rem;
+}
+
+.active {
+	opacity: 0.5;
+}

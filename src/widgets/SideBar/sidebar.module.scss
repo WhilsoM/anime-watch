@@ -1,0 +1,17 @@
+@use '@/app/styles/global' as *;
+
+.sidebar {
+	border-right: 1px solid var(--border-color);
+	background-color: var(--bg-color);
+	width: 15rem;
+	padding: 1rem 2rem;
+	height: 100%;
+	position: fixed;
+	top: 1rem;
+	left: 1rem;
+
+	&__link {
+		margin-bottom: 1rem;
+		font-size: var(--text-link-size);
+	}
+}
