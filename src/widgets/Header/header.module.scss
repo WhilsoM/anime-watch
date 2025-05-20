@@ -1,5 +1,5 @@
 .header {
-	height: 6rem;
+	height: 7rem;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -8,7 +8,9 @@
 	display: flex;
 	gap: 0.5rem;
 }
-.searchAnime {
-}
-.loupe {
+
+.header__wrapper {
+	display: flex;
+	align-items: center;
+	gap: 1.5rem;
 }

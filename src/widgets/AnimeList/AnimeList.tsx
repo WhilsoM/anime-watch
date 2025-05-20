@@ -22,9 +22,7 @@ export const AnimeList = () => {
 	const fetchRecomendation = async (
 		setState: Dispatch<SetStateAction<RecommendationsData[]>>
 	) => {
-		const response = await fetch(
-			'https://api.jikan.moe/v4/anime/1/recommendations'
-		)
+		const response = await fetch(import.meta.env.VITE_ANIME_RECOMENDATIONS)
 		const data = await response.json()
 
 		const sliceData = data.data.slice(0, 50)
@@ -40,6 +38,7 @@ export const AnimeList = () => {
 		<section className={s.animeList}>
 			{recommendations.map((item) => (
 				<AnimeItem
+					id={item.entry.mal_id}
 					key={item.entry.mal_id}
 					img={item.entry.images.webp.image_url}
 					title={item.entry.title}

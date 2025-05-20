@@ -2,8 +2,8 @@ import { AnimeList } from '@/widgets/AnimeList/AnimeList'
 
 export const HomePage = () => {
 	return (
-		<div>
+		<section role='home-page'>
 			<AnimeList />
-		</div>
+		</section>
 	)
 }

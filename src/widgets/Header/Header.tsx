@@ -14,18 +14,17 @@ export const Header = () => {
 				<Search className={s.loupe} />
 			</section>
 
-			<section className={s.toggleTheme} role='toggle-theme'>
-				<Button>EN</Button>
-				<Button>RU</Button>
-			</section>
+			<section className={s.header__wrapper}>
+				<section className={s.toggleTheme} role='toggle-theme'>
+					<Button
+						variant={isDarkTheme ? 'outline' : 'default'}
+						onClick={() => setIsDarkTheme((prev) => !prev)}
+					>
+						{isDarkTheme ? <Moon /> : <Sun />}
+					</Button>
+				</section>
 
-			<section role='change-language'>
-				<Button
-					variant={isDarkTheme ? 'outline' : 'default'}
-					onClick={() => setIsDarkTheme((prev) => !prev)}
-				>
-					{isDarkTheme ? <Moon /> : <Sun />}
-				</Button>
+				<article>Account IMG</article>
 			</section>
 		</header>
 	)
