@@ -1,9 +1,17 @@
+import type { AppDispatch, RootState } from '@/app/store'
+import {
+	addToFavorites,
+	removeFromFavorites,
+} from '@/features/favorites/model/slice/favoritesSlice'
 import { Button } from '@/shared/UI/button'
+import { Heart } from 'lucide-react'
 import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link, useParams } from 'react-router'
 import s from './animebyid.module.scss'
 
 export interface AnimeByIdData {
+	mal_id: number
 	title: string
 	year: number
 	score: number
@@ -27,6 +35,18 @@ export const AnimeByIdPage = () => {
 	console.log(id)
 	const [dataById, setDataById] = useState<AnimeByIdData>()
 	const [isClicked, setIsClicked] = useState(false)
+	const dispatch = useDispatch<AppDispatch>()
+	const isFavorite = useSelector((state: RootState) =>
+		state.favorites.some((item) => item.mal_id === dataById?.mal_id)
+	)
+
+	const toggleFavorite = () => {
+		if (!dataById) return
+
+		isFavorite
+			? dispatch(removeFromFavorites(dataById.mal_id))
+			: dispatch(addToFavorites(dataById))
+	}
 
 	const fetchAnimeById = async () => {
 		if (typeof id !== 'string' || id === null)
@@ -64,6 +84,9 @@ export const AnimeByIdPage = () => {
 			<article role='main-info' className={s.mainInfo}>
 				<div>
 					<img src={dataById?.images.webp.image_url} alt={dataById?.title} />
+					<Button onClick={toggleFavorite}>
+						{isFavorite ? <Heart color='red' /> : <Heart />}
+					</Button>
 				</div>
 
 				<div className={s.info}>
