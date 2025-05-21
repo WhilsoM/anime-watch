@@ -1,9 +1,10 @@
 @use '@/app/styles/global' as *;
 
 .mainInfo {
-	display: flex;
-	align-items: center;
-	gap: 3rem;
+	display: grid;
+	grid-template-columns: 50% 50%;
+	justify-items: center;
+	align-items: flex-start;
 }
 .infoAboutTitle {
 	display: flex;
@@ -11,7 +12,6 @@
 	gap: 1rem;
 }
 .info__desc {
-	width: 70rem;
 	font-size: 1.5rem;
 	margin-bottom: 0.5rem;
 	overflow: hidden;
@@ -20,4 +20,12 @@
 .info__li {
 	font-size: 1.5rem;
 	margin-bottom: 1rem;
+}
+.poster {
+	margin-bottom: 1rem;
+}
+
+.heart {
+	width: 1.8rem;
+	height: 1.8rem;
 }

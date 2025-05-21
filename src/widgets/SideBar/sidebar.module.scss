@@ -6,9 +6,10 @@
 	width: 15rem;
 	padding: 1rem 2rem;
 	height: 100%;
-	position: fixed;
-	top: 7rem;
-	left: 1rem;
+	// position: fixed;
+	// top: 7rem;
+	// left: 1rem;
+	flex-shrink: 0;
 
 	&__link {
 		margin-bottom: 1rem;

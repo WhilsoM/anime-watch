@@ -10,7 +10,7 @@ export const SideBar = () => {
 						<NavLink to={'/home-page'}>Home</NavLink>
 					</li>
 					<li className={s.sidebar__link}>
-						<NavLink to={'/favorites'}>Избранное</NavLink>
+						<NavLink to={'/favorites'}>Favorites</NavLink>
 					</li>
 					<li className={s.sidebar__link}>
 						<NavLink to={'/account'}>Account</NavLink>

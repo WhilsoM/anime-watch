@@ -14,13 +14,15 @@ export const Layout = () => {
 	return (
 		<>
 			<Header />
-			<SideBar />
-
-			<main className='container'>
-				<Outlet />
-			</main>
-
-			<Footer />
+			<div className='layout'>
+				<SideBar />
+				<div className='wrapper'>
+					<main className='container'>
+						<Outlet />
+					</main>
+					<Footer />
+				</div>
+			</div>
 		</>
 	)
 }

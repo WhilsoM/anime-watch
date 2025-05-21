@@ -22,7 +22,7 @@ export const AnimeList = () => {
 	const fetchRecomendation = async (
 		setState: Dispatch<SetStateAction<RecommendationsData[]>>
 	) => {
-		const response = await fetch(import.meta.env.VITE_ANIME_RECOMENDATIONS)
+		const response = await fetch(`${import.meta.env.VITE_ANIME_RECOMENDATIONS}`)
 		const data = await response.json()
 
 		const sliceData = data.data.slice(0, 50)

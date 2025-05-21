@@ -11,8 +11,19 @@
 	--border-radius-element: 0.5rem;
 }
 
+[data-theme='dark'] {
+	--text-color: #fff;
+	--bg-color: #282828;
+	--border-color: #373737;
+}
+
 html {
 	font-size: 62.5%;
+}
+.layout {
+	display: flex;
+	justify-content: center;
+	gap: 1.5rem;
 }
 .section-title {
 	font-size: var(--title-size);
@@ -28,14 +39,24 @@ html {
 .active {
 	opacity: 0.5;
 }
-
-body {
+.wrapper {
+	display: flex;
+	flex-direction: column;
 	min-height: 100vh;
+}
+html,
+body {
+	height: 100%;
+	margin: 0;
+}
+body {
 	margin: 0;
 	display: flex;
 	flex-direction: column;
 }
-
+main {
+	flex: 1;
+}
 header {
 	min-height: 50px;
 }

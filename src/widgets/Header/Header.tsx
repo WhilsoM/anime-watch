@@ -18,7 +18,6 @@ export const Header = () => {
 	useEffect(() => {
 		if (pathname !== '/home-page') setIsHomePage(false)
 		else setIsHomePage(true)
-		console.log(pathname, isHomePage)
 	}, [pathname])
 
 	const searchAnimeHandle = async () => {
@@ -26,33 +25,45 @@ export const Header = () => {
 		await fetchSearchedAnime(searchAnimeValue, dispatch)
 	}
 
-	return (
-		<header className={`${s.header} container`} role='header'>
-			{isHomePage && (
-				<section className={s.searchBlock} role='search-anime'>
-					<Input
-						value={searchAnimeValue}
-						onChange={(e) => setSearchAnimeValue(e.target.value)}
-						type='text'
-						name='search'
-						className={s.searchAnime}
-					/>
-					<Button onClick={searchAnimeHandle} variant={'destructive'}>
-						<Search className={s.loupe} />
-					</Button>
-				</section>
-			)}
-			<section className={s.header__wrapper}>
-				<section className={s.toggleTheme} role='toggle-theme'>
-					<Button
-						variant={isDarkTheme ? 'outline' : 'default'}
-						onClick={() => setIsDarkTheme((prev) => !prev)}
-					>
-						{isDarkTheme ? <Moon /> : <Sun />}
-					</Button>
-				</section>
+	const toggleTheme = () => {
+		if (!isDarkTheme) {
+			document.body.setAttribute('data-theme', 'dark')
+			setIsDarkTheme(true)
+		} else {
+			document.body.setAttribute('data-theme', 'light')
+			setIsDarkTheme(false)
+		}
+	}
 
-				<article>Account IMG</article>
+	return (
+		<header className={`${s.header}`} role='header'>
+			<section className={`${s.header__wrapper} container`}>
+				{isHomePage && (
+					<section className={s.searchBlock} role='search-anime'>
+						<Input
+							value={searchAnimeValue}
+							onChange={(e) => setSearchAnimeValue(e.target.value)}
+							type='text'
+							name='search'
+							className={s.searchAnime}
+						/>
+						<Button onClick={searchAnimeHandle} variant={'ghost'}>
+							<Search className={s.loupe} />
+						</Button>
+					</section>
+				)}
+				<section className={s.header__wrapper}>
+					<section className={s.toggleTheme} role='toggle-theme'>
+						<Button
+							variant={isDarkTheme ? 'outline' : 'default'}
+							onClick={toggleTheme}
+						>
+							{isDarkTheme ? <Moon /> : <Sun />}
+						</Button>
+					</section>
+
+					<article>Account IMG</article>
+				</section>
 			</section>
 		</header>
 	)

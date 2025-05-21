@@ -1,14 +1,25 @@
+@use '@/app/styles/global' as *;
+
 .header {
 	height: 7rem;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	background-color: var(--bg-color);
+	&__wrapper {
+		display: flex;
+		justify-content: space-between;
+	}
 }
 .searchBlock {
 	display: flex;
+	align-items: stretch;
 	gap: 0.5rem;
 }
-
+.loupe {
+	width: 1.5rem;
+	height: 1.5rem;
+}
 .header__wrapper {
 	display: flex;
 	align-items: center;
