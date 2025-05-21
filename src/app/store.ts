@@ -1,9 +1,11 @@
 import favoritesReducer from '@/features/favorites/model/slice/favoritesSlice'
+import searchReducer from '@/features/search/model/slice/searchSlice'
+
 import { configureStore } from '@reduxjs/toolkit'
 export const store = configureStore({
 	reducer: {
 		favorites: favoritesReducer,
-		// другие редьюсеры
+		search: searchReducer,
 	},
 })
 

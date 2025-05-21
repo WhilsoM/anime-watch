@@ -5,16 +5,22 @@
 	border: 1px solid var(--border-color);
 	border-radius: var(--border-radius-block);
 	padding: 0.5rem 1rem;
-
+	height: 100%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
+	a {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+	}
 }
 
 .animeItem__title {
 	color: var(--text-color);
 	font-size: var(--text-size);
-	width: max-content;
+	text-align: center;
 	margin: 1rem 0;
 }

@@ -3,32 +3,13 @@ import {
 	addToFavorites,
 	removeFromFavorites,
 } from '@/features/favorites/model/slice/favoritesSlice'
+import type { AnimeByIdData } from '@/shared/types/types'
 import { Button } from '@/shared/UI/button'
 import { Heart } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useParams } from 'react-router'
 import s from './animebyid.module.scss'
-
-export interface AnimeByIdData {
-	mal_id: number
-	title: string
-	year: number
-	score: number
-	source: string
-	status: string
-	episodes: number
-	synopsis: string
-	images: {
-		webp: {
-			image_url: string
-		}
-	}
-	studios: {
-		name: string
-		url: string
-	}[]
-}
 
 export const AnimeByIdPage = () => {
 	const { id } = useParams()

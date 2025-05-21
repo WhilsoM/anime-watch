@@ -1,4 +1,4 @@
-import type { AnimeByIdData } from '@/pages/AnimeByIdPage/AnimeByIdPage'
+import type { AnimeByIdData } from '@/shared/types/types'
 import type { Dispatch, SetStateAction } from 'react'
 
 interface fetchAnimeByIdProps {
