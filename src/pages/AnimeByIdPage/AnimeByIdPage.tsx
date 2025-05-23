@@ -17,23 +17,26 @@ export const AnimeByIdPage = () => {
 	const [isClicked, setIsClicked] = useState(false)
 	const dispatch = useDispatch<AppDispatch>()
 	const isFavorite = useSelector((state: RootState) =>
-		state.favorites.some((item) => item.mal_id === animeById?.mal_id)
+		state.favorites.some((item) => item.id === animeById?.id)
 	)
 
 	const toggleFavorite = () => {
 		if (!animeById) return
 
 		isFavorite
-			? dispatch(removeFromFavorites(animeById.mal_id))
+			? dispatch(removeFromFavorites(animeById.id))
 			: dispatch(addToFavorites(animeById))
 	}
 
 	const fetchAnimeById = async () => {
 		if (typeof id !== 'string' || id === null) return
 
-		const response = await fetch(`${import.meta.env.VITE_ANIME_BY_ID}/${id}`)
+		const response = await fetch(`${import.meta.env.VITE_ANIME_BY_ID}?id=${id}`)
 		const data = await response.json()
-		setAnimeById(data.data)
+		console.log(data)
+
+		setAnimeById(data)
+		console.log(animeById)
 	}
 
 	const handleClick = () => {
@@ -45,28 +48,15 @@ export const AnimeByIdPage = () => {
 	useEffect(() => {
 		fetchAnimeById()
 	}, [])
-	// for bg img if i have
-	// content: "";
-	//   display: block;
-	//   position: absolute;
-	//   top: 0;
-	//   left: 0;
-	//   right: 0;
-	//   bottom: 0;
-	//   z-index: 2;
-	//   background: linear-gradient(to top, rgba(0, 0, 0, .6), transparent 180px), rgba(0, 0, 0, .2);
 
 	return (
 		<section role='info-anime'>
-			{/* TODO: ADD BG IMG */}
-			<div role='bg-img'>{/* <img src={animeById?.data} alt='' /> */}</div>
-
 			<article role='main-info' className={s.mainInfo}>
 				<div>
 					<img
 						className={s.poster}
-						src={animeById?.images.webp.image_url}
-						alt={animeById?.title}
+						src={animeById?.posters.medium.url}
+						alt={animeById?.names.en}
 					/>
 					<Button
 						className='p-4'
@@ -82,11 +72,10 @@ export const AnimeByIdPage = () => {
 				</div>
 
 				<div className={s.info}>
-					<h2 className='section-title'>Информация о тайтле</h2>
+					<h2 className={`section-title ${s.title}`}>
+						{animeById?.names.ru ?? 'Не указан'}
+					</h2>
 					<ul className={s.infoAboutTitle}>
-						<li className={s.info__li}>
-							Название: {animeById?.title ?? 'Не указан'}
-						</li>
 						<li className={s.info__li}>
 							Рейтинг: {animeById?.score ?? 'Не указан'}
 						</li>
@@ -97,7 +86,7 @@ export const AnimeByIdPage = () => {
 							Источник: {animeById?.source ?? 'Не указан'}
 						</li>
 						<li className={s.info__li}>
-							Статус: {animeById?.status ?? 'Не указан'}
+							Статус: {animeById?.announce ?? 'Не указан'}
 						</li>
 						<li className={s.info__li}>
 							Год: {animeById?.year ?? 'Не указан'}
@@ -105,11 +94,8 @@ export const AnimeByIdPage = () => {
 
 						<li className={s.info__li}>
 							Студии:
-							{animeById?.studios?.map((studio) => (
-								<Link key={studio.name} target='_blank' to={studio.url}>
-									{' '}
-									{studio.name}
-								</Link>
+							{animeById?.team.voice?.map((person) => (
+								<p>{person}</p>
 							))}{' '}
 						</li>
 						<li className={s.info__li}>
@@ -120,7 +106,7 @@ export const AnimeByIdPage = () => {
 								}}
 								className={s.info__desc}
 							>
-								{animeById?.synopsis}
+								{animeById?.description}
 							</p>
 							<Button variant={'secondary'} onClick={handleClick}>
 								{isClicked ? 'Свернуть' : 'Подробнее...'}
@@ -129,6 +115,12 @@ export const AnimeByIdPage = () => {
 					</ul>
 				</div>
 			</article>
+
+			<Link to={`/anime-title/${animeById?.id}/1`}>
+				<button className='mt-4 bg-blue-500 text-white px-4 py-2 rounded'>
+					Смотреть
+				</button>
+			</Link>
 		</section>
 	)
 }

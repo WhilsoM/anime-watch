@@ -1,1 +1,1 @@
-export let limit = 5
+export let limit = 10

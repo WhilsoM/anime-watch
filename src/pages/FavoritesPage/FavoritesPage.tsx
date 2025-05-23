@@ -14,10 +14,10 @@ export const FavoritesPage = () => {
 				{favorites.length > 0 &&
 					favorites.map((favorite) => (
 						<AnimeItem
-							key={favorite.mal_id}
-							id={favorite.mal_id}
-							img={favorite.images.webp.image_url}
-							title={favorite.title}
+							key={favorite.id}
+							id={favorite.id}
+							img={favorite.posters.medium.url}
+							title={favorite.names.ru}
 						/>
 					))}
 			</section>

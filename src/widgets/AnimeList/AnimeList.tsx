@@ -1,18 +1,9 @@
+import type { AnimeByIdData } from '@/shared/types/types'
 import { useEffect, useState, type Dispatch, type SetStateAction } from 'react'
 import { AnimeItem } from '../AnimeItem/AnimeItem'
 import s from './anime-list.module.scss'
 
-interface RecommendationsData {
-	entry: {
-		mal_id: number
-		title: string
-		images: {
-			webp: {
-				image_url: string
-			}
-		}
-	}
-}
+type RecommendationsData = Pick<AnimeByIdData, 'id' | 'names' | 'posters'>
 
 export const AnimeList = () => {
 	const [recommendations, setRecommendations] = useState<RecommendationsData[]>(
@@ -22,12 +13,22 @@ export const AnimeList = () => {
 	const fetchRecomendation = async (
 		setState: Dispatch<SetStateAction<RecommendationsData[]>>
 	) => {
-		const response = await fetch(`${import.meta.env.VITE_ANIME_RECOMENDATIONS}`)
-		const data = await response.json()
+		try {
+			const response = await fetch(
+				`${import.meta.env.VITE_API_URL}${
+					import.meta.env.VITE_ANIME_RECOMENDATIONS
+				}`
+			)
+			const data = await response.json()
 
-		const sliceData = data.data.slice(0, 50)
+			const sliceData = data.data.slice(0, 50)
+			console.log('slice', sliceData)
+			console.log('data', data)
 
-		setState(sliceData)
+			setState(sliceData)
+		} catch (error) {
+			console.log(error)
+		}
 	}
 
 	useEffect(() => {
@@ -38,10 +39,10 @@ export const AnimeList = () => {
 		<section className={s.animeList}>
 			{recommendations.map((item) => (
 				<AnimeItem
-					id={item.entry.mal_id}
-					key={item.entry.mal_id}
-					img={item.entry.images.webp.image_url}
-					title={item.entry.title}
+					id={item.id}
+					key={item.id}
+					img={item.posters.medium.url}
+					title={item.names.ru}
 				/>
 			))}
 		</section>

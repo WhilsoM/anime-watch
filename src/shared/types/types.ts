@@ -1,19 +1,34 @@
 export interface AnimeByIdData {
-	mal_id: number
-	title: string
+	id: number
+	code: string
+	torrent_id: number
+	names: {
+		ru: string
+		en: string
+	}
 	year: number
 	score: number
 	source: string
-	status: string
+	announce: string
 	episodes: number
-	synopsis: string
-	images: {
-		webp: {
-			image_url: string
+	description: string
+	posters: {
+		small: {
+			url: string
+		}
+		medium: {
+			url: string
+		}
+		original: {
+			url: string
 		}
 	}
-	studios: {
-		name: string
-		url: string
-	}[]
+	team: {
+		voice: string[]
+		translator: string[]
+		editing: string[]
+		decor: string[]
+		timing: string[]
+	}
+	genres: string[]
 }

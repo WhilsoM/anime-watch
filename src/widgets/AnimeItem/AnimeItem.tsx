@@ -9,8 +9,8 @@ interface AnimeItemProps {
 
 export const AnimeItem = ({ id, img, title }: AnimeItemProps) => {
 	return (
-		<article className={s.animeItem}>
-			<Link to={`/anime-by-id/${id}`}>
+		<article className={`${s.animeItem}`}>
+			<Link to={`/anime-title/${id}`}>
 				<img src={img} alt={title + 'img'} />
 				<p className={s.animeItem__title}>{title}</p>
 			</Link>

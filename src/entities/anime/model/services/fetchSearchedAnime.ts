@@ -7,11 +7,15 @@ export const fetchSearchedAnime = async (
 	dispatch: AppDispatch
 ) => {
 	if (text.length === 0) return
+	try {
+		const response = await fetch(
+			`${import.meta.env.VITE_SEARCH_ANIME}?search=${text}&limit=${limit}`
+		)
+		const searchedAnimeData = await response.json()
+		console.log(searchedAnimeData)
 
-	const response = await fetch(
-		`https://api.jikan.moe/v4/anime?q=${text}&limit=${limit}`
-	)
-	const searchedAnimeData = await response.json()
-
-	return dispatch(searchAnime(searchedAnimeData.data))
+		return dispatch(searchAnime(searchedAnimeData))
+	} catch (error) {
+		console.log(error)
+	}
 }

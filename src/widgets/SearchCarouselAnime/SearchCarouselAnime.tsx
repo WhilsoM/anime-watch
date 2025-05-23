@@ -19,10 +19,13 @@ export const SearchCarouselAnime = () => {
 				<article className={s.searchedAnime} role='searched-animes'>
 					<h2 className='section-title'>Поиск аниме</h2>
 
-					<Carousel>
-						<CarouselContent>
+					<Carousel className='w-full'>
+						<CarouselContent className='-ml-1'>
 							{state.map((item) => (
-								<CarouselItem key={item.mal_id}>
+								<CarouselItem
+									className='pl-1 md:basis-1/2 lg:basis-1/3'
+									key={item.mal_id}
+								>
 									<AnimeItem
 										id={item.mal_id}
 										img={item.images.webp.image_url}
@@ -31,8 +34,8 @@ export const SearchCarouselAnime = () => {
 								</CarouselItem>
 							))}
 						</CarouselContent>
-						<CarouselPrevious />
-						<CarouselNext />
+						<CarouselPrevious className='left-2' />
+						<CarouselNext className='right-2' />
 					</Carousel>
 				</article>
 			)}

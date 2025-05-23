@@ -48,16 +48,16 @@ export const Header = () => {
 							className={s.searchAnime}
 						/>
 						<Button onClick={searchAnimeHandle} variant={'ghost'}>
-							<Search className={s.loupe} />
+							<Search
+								className={s.loupe}
+								color={isDarkTheme ? 'white' : 'black'}
+							/>
 						</Button>
 					</section>
 				)}
 				<section className={s.header__wrapper}>
 					<section className={s.toggleTheme} role='toggle-theme'>
-						<Button
-							variant={isDarkTheme ? 'outline' : 'default'}
-							onClick={toggleTheme}
-						>
+						<Button variant={'default'} onClick={toggleTheme}>
 							{isDarkTheme ? <Moon /> : <Sun />}
 						</Button>
 					</section>

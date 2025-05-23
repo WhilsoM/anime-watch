@@ -3,7 +3,7 @@ import { SearchCarouselAnime } from '@/widgets/SearchCarouselAnime/SearchCarouse
 
 export const HomePage = () => {
 	return (
-		<section role='home-page'>
+		<section className='pt-4' role='home-page'>
 			<SearchCarouselAnime />
 
 			<h2 className='section-title'>Рекомендации</h2>

@@ -3,14 +3,12 @@
 .sidebar {
 	border-right: 1px solid var(--border-color);
 	background-color: var(--bg-color);
-	width: 15rem;
+	min-width: 10rem;
 	padding: 1rem 2rem;
-	height: 100%;
-	// position: fixed;
-	// top: 7rem;
-	// left: 1rem;
 	flex-shrink: 0;
-
+	& nav {
+		position: fixed;
+	}
 	&__link {
 		margin-bottom: 1rem;
 		font-size: var(--text-link-size);
