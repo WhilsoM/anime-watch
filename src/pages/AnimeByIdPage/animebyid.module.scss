@@ -5,7 +5,9 @@
 	grid-template-columns: 30% 50%;
 	justify-items: center;
 	align-items: flex-start;
-	gap: 1rem;
+	gap: 2rem;
+	margin-top: 2rem;
+	margin-left: 1.5rem;
 }
 .infoAboutTitle {
 	display: flex;
@@ -22,7 +24,7 @@
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
-	width: 50rem;
+	width: max-content;
 }
 .info__li {
 	font-size: 1.5rem;

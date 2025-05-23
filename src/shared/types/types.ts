@@ -6,7 +6,12 @@ export interface AnimeByIdData {
 		ru: string
 		en: string
 	}
-	year: number
+	season: {
+		year: number
+	}
+	status: {
+		string: string
+	}
 	score: number
 	source: string
 	announce: string
@@ -31,4 +36,17 @@ export interface AnimeByIdData {
 		timing: string[]
 	}
 	genres: string[]
+	franchises: {
+		franchise: {
+			id: string
+			name: string
+		}
+		releases: {
+			id: number
+			names: {
+				en: string
+				ru: string
+			}
+		}[]
+	}[]
 }

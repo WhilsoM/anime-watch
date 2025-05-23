@@ -36,15 +36,8 @@ export const AnimeByIdPage = () => {
 		console.log(data)
 
 		setAnimeById(data)
-		console.log(animeById)
 	}
 
-	const handleClick = () => {
-		setIsClicked((prev) => !prev)
-
-		if (!isClicked) {
-		}
-	}
 	useEffect(() => {
 		fetchAnimeById()
 	}, [])
@@ -55,7 +48,7 @@ export const AnimeByIdPage = () => {
 				<div>
 					<img
 						className={s.poster}
-						src={animeById?.posters.medium.url}
+						src={`https://anilibria.top/${animeById?.posters.small.url}`}
 						alt={animeById?.names.en}
 					/>
 					<Button
@@ -77,25 +70,30 @@ export const AnimeByIdPage = () => {
 					</h2>
 					<ul className={s.infoAboutTitle}>
 						<li className={s.info__li}>
-							Рейтинг: {animeById?.score ?? 'Не указан'}
+							Рейтинг: <p>{animeById?.score ?? 'Не указан'}</p>
 						</li>
 						<li className={s.info__li}>
-							Кол-во эпизодов: {animeById?.episodes ?? 'Не указан'}
+							Кол-во эпизодов: <p>{animeById?.episodes ?? 'Не указан'}</p>
 						</li>
 						<li className={s.info__li}>
-							Источник: {animeById?.source ?? 'Не указан'}
+							Источник: <p>{animeById?.source ?? 'Не указан'}</p>
 						</li>
 						<li className={s.info__li}>
-							Статус: {animeById?.announce ?? 'Не указан'}
+							Статус: <p>{animeById?.status.string ?? 'Не указан'}</p>
 						</li>
 						<li className={s.info__li}>
-							Год: {animeById?.year ?? 'Не указан'}
+							Год: <p>{animeById?.season.year ?? 'Не указан'}</p>
 						</li>
-
+						<li className={s.info__li}>
+							Жанры:{' '}
+							{animeById?.genres.map((genre) => (
+								<p key={genre}>{genre}</p>
+							))}
+						</li>
 						<li className={s.info__li}>
 							Студии:
 							{animeById?.team.voice?.map((person) => (
-								<p>{person}</p>
+								<p key={person}>{person}</p>
 							))}{' '}
 						</li>
 						<li className={s.info__li}>
@@ -108,7 +106,10 @@ export const AnimeByIdPage = () => {
 							>
 								{animeById?.description}
 							</p>
-							<Button variant={'secondary'} onClick={handleClick}>
+							<Button
+								variant={'secondary'}
+								onClick={() => setIsClicked((prev) => !prev)}
+							>
 								{isClicked ? 'Свернуть' : 'Подробнее...'}
 							</Button>
 						</li>

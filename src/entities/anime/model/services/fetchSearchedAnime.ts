@@ -12,9 +12,8 @@ export const fetchSearchedAnime = async (
 			`${import.meta.env.VITE_SEARCH_ANIME}?search=${text}&limit=${limit}`
 		)
 		const searchedAnimeData = await response.json()
-		console.log(searchedAnimeData)
 
-		return dispatch(searchAnime(searchedAnimeData))
+		return dispatch(searchAnime(searchedAnimeData.list))
 	} catch (error) {
 		console.log(error)
 	}

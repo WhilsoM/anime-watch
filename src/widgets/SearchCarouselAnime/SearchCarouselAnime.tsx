@@ -12,6 +12,7 @@ import s from './searchcarouselanime.module.scss'
 
 export const SearchCarouselAnime = () => {
 	const state = useSelector((state: RootState) => state.search)
+	console.log(state)
 
 	return (
 		<>
@@ -24,12 +25,12 @@ export const SearchCarouselAnime = () => {
 							{state.map((item) => (
 								<CarouselItem
 									className='pl-1 md:basis-1/2 lg:basis-1/3'
-									key={item.mal_id}
+									key={item.id}
 								>
 									<AnimeItem
-										id={item.mal_id}
-										img={item.images.webp.image_url}
-										title={item.title}
+										id={item.id}
+										img={`https://anilibria.top/${item.posters.medium.url}`}
+										title={item.names.ru}
 									/>
 								</CarouselItem>
 							))}
