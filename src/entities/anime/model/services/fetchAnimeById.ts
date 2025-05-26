@@ -1,16 +1,13 @@
-import type { AnimeByIdData } from '@/shared/types/types'
-import type { Dispatch, SetStateAction } from 'react'
-
-interface fetchAnimeByIdProps {
-	id: number
-	setState: Dispatch<SetStateAction<AnimeByIdData>>
-}
+import type { fetchAnimeByIdProps } from '../types/types'
 
 export const fetchAnimeById = async ({ id, setState }: fetchAnimeByIdProps) => {
 	if (typeof id !== 'string' || id === null) return 'error'
+	try {
+		const response = await fetch(`${import.meta.env.VITE_ANIME_BY_ID}/${id}`)
+		const data = await response.json()
 
-	const response = await fetch(`${import.meta.env.VITE_ANIME_BY_ID}/${id}`)
-	const data = await response.json()
-
-	return setState(data)
+		return setState(data)
+	} catch (error) {
+		console.error(error)
+	}
 }

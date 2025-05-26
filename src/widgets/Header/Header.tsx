@@ -1,5 +1,5 @@
 import { type AppDispatch } from '@/app/store'
-import { fetchSearchedAnime } from '@/entities/anime/model/services/fetchSearchedAnime'
+import { fetchSearchedAnime } from '@/entities/anime/model/services'
 import { Button } from '@/shared/UI/button'
 import { Input } from '@/shared/UI/input'
 import { Moon, Search, Sun } from 'lucide-react'

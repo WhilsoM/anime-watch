@@ -48,7 +48,9 @@ export const AnimeByIdPage = () => {
 				<div>
 					<img
 						className={s.poster}
-						src={`https://anilibria.top/${animeById?.posters.small.url}`}
+						src={`${import.meta.env.VITE_PROXY_URL}${
+							animeById?.posters.small.url
+						}`}
 						alt={animeById?.names.en}
 					/>
 					<Button
@@ -70,13 +72,7 @@ export const AnimeByIdPage = () => {
 					</h2>
 					<ul className={s.infoAboutTitle}>
 						<li className={s.info__li}>
-							Рейтинг: <p>{animeById?.score ?? 'Не указан'}</p>
-						</li>
-						<li className={s.info__li}>
-							Кол-во эпизодов: <p>{animeById?.episodes ?? 'Не указан'}</p>
-						</li>
-						<li className={s.info__li}>
-							Источник: <p>{animeById?.source ?? 'Не указан'}</p>
+							Кол-во эпизодов: <p>{animeById?.type.episodes ?? 'Не указан'}</p>
 						</li>
 						<li className={s.info__li}>
 							Статус: <p>{animeById?.status.string ?? 'Не указан'}</p>

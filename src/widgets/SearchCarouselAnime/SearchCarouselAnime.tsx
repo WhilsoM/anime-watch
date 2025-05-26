@@ -12,7 +12,6 @@ import s from './searchcarouselanime.module.scss'
 
 export const SearchCarouselAnime = () => {
 	const state = useSelector((state: RootState) => state.search)
-	console.log(state)
 
 	return (
 		<>
@@ -29,7 +28,9 @@ export const SearchCarouselAnime = () => {
 								>
 									<AnimeItem
 										id={item.id}
-										img={`https://anilibria.top/${item.posters.medium.url}`}
+										img={`${import.meta.env.VITE_PROXY_URL}${
+											item.posters.medium.url
+										}`}
 										title={item.names.ru}
 									/>
 								</CarouselItem>

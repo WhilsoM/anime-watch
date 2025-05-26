@@ -2,6 +2,9 @@ export interface AnimeByIdData {
 	id: number
 	code: string
 	torrent_id: number
+	type: {
+		episodes: number
+	}
 	names: {
 		ru: string
 		en: string
@@ -12,10 +15,7 @@ export interface AnimeByIdData {
 	status: {
 		string: string
 	}
-	score: number
-	source: string
 	announce: string
-	episodes: number
 	description: string
 	posters: {
 		small: {

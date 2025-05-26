@@ -20,10 +20,6 @@ export const AnimeList = () => {
 			)
 			const data = await response.json()
 
-			// const sliceData = data.slice(0, 50)
-
-			console.log('data', data)
-
 			setState(data.list)
 		} catch (error) {
 			console.log(error)
