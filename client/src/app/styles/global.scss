@@ -1,0 +1,76 @@
+@use './normalize.css' as *;
+
+:root {
+	--text-color: #000;
+	--bg-color: #fff;
+	--title-size: clamp(2rem, 3.5vw, 3rem);
+	--text-size: clamp(1.4rem, 3.5vw, 1.8rem);
+	--text-link-size: clamp(1.3rem, 3.5vw, 1.5rem);
+	--border-color: #000;
+	--border-radius-block: 1rem;
+	--border-radius-element: 0.5rem;
+}
+
+[data-theme='dark'] {
+	--text-color: #e7e7e7;
+	--bg-color: #1b1b1b;
+	--border-color: #323232;
+}
+
+$tablet: 768px;
+$mobile: 576px;
+
+html {
+	font-size: 62.5%;
+}
+.layout {
+	display: flex;
+	justify-content: flex-start;
+	gap: 1rem;
+}
+.section-title {
+	font-size: var(--title-size);
+	margin-bottom: 1.5rem;
+	font-weight: 600;
+	color: var(--text-color);
+}
+.container {
+	max-width: 1100px;
+	margin: 0 auto;
+	padding: 0 0.5rem;
+}
+
+.active {
+	opacity: 0.5;
+}
+.wrapper {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+html,
+body {
+	height: 100%;
+	margin: 0;
+}
+body {
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	background-color: var(--bg-color);
+	color: var(--text-color);
+}
+main {
+	flex: 1;
+}
+header {
+	min-height: 50px;
+}
+
+footer {
+	min-height: 50px;
+}
+
+main {
+	flex: 1;
+}
