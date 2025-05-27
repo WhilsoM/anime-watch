@@ -9,9 +9,9 @@ const searchSlice = createSlice({
 	reducers: {
 		searchAnime(state, action: PayloadAction<AnimeByIdData[]>) {
 			const uniqueItems = action.payload.filter(
-				(item, index, self) =>
-					index === self.findIndex((t) => t.mal_id === item.mal_id)
+				(item, index, self) => index === self.findIndex((t) => t.id === item.id)
 			)
+
 			return uniqueItems
 		},
 	},

@@ -31,7 +31,11 @@ export const AnimeByIdPage = () => {
 	const fetchAnimeById = async () => {
 		if (typeof id !== 'string' || id === null) return
 
-		const response = await fetch(`${import.meta.env.VITE_ANIME_BY_ID}?id=${id}`)
+		const response = await fetch(
+			`${import.meta.env.VITE_API_URL}${
+				import.meta.env.VITE_ANIME_BY_ID
+			}?id=${id}`
+		)
 		const data = await response.json()
 		console.log(data)
 
@@ -50,7 +54,7 @@ export const AnimeByIdPage = () => {
 						className={s.poster}
 						src={`${import.meta.env.VITE_PROXY_URL}${
 							animeById?.posters.small.url
-						}`}
+						}}`}
 						alt={animeById?.names.en}
 					/>
 					<Button

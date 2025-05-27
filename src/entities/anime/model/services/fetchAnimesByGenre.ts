@@ -4,10 +4,11 @@ export const fetchAnimesByGenre = async (genre: string | undefined) => {
 
 	try {
 		const response = await fetch(
-			`${
-				import.meta.env.VITE_API_URL
-			}title/search/advanced?query={genres}=="${genre}"&order_by=in_favorites&sort_direction=1&limit=20`
+			`${import.meta.env.VITE_API_URL}${
+				import.meta.env.VITE_ANIME_BY_ID
+			}/list?id_list=8500,8644`
 		)
+
 		if (!response.status) {
 			if (!response.ok) {
 				console.error('Error', response.status)

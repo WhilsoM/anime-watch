@@ -8,11 +8,11 @@ const favoritesSlice = createSlice({
 	initialState,
 	reducers: {
 		addToFavorites(state, action: PayloadAction<AnimeByIdData>) {
-			const exists = state.find((item) => item.mal_id === action.payload.mal_id)
+			const exists = state.find((item) => item.id === action.payload.id)
 			if (!exists) state.push(action.payload)
 		},
 		removeFromFavorites(state, action: PayloadAction<number>) {
-			return state.filter((item) => item.mal_id !== action.payload)
+			return state.filter((item) => item.id !== action.payload)
 		},
 		clearFavorites() {
 			return []

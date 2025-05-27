@@ -7,9 +7,12 @@ export const fetchSearchedAnime = async (
 	dispatch: AppDispatch
 ) => {
 	if (text.length === 0) return
+
 	try {
 		const response = await fetch(
-			`${import.meta.env.VITE_SEARCH_ANIME}?search=${text}&limit=${limit}`
+			`${import.meta.env.VITE_API_URL}${
+				import.meta.env.VITE_SEARCH_ANIME
+			}?search=${text}&limit=${limit}`
 		)
 		const searchedAnimeData = await response.json()
 

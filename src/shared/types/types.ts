@@ -49,4 +49,27 @@ export interface AnimeByIdData {
 			}
 		}[]
 	}[]
+
+	player: {
+		alternative_player: string
+		list: Record<number, Episode>
+	}
+}
+
+export type TPlayerAnime = Pick<AnimeByIdData, 'player'>
+
+type Episode = {
+	episode: number
+	name: string
+	created_timestamp: number
+	preview: any
+	skips: {
+		opening: string[]
+		ending: string[]
+	}
+	hls: {
+		fhd: string
+		hd: string
+		sd: string
+	}
 }

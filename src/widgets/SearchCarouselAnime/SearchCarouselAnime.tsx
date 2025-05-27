@@ -1,4 +1,5 @@
 import type { RootState } from '@/app/store'
+import { getImageWithProxy } from '@/features/getImageWithProxy'
 import {
 	Carousel,
 	CarouselContent,
@@ -28,9 +29,7 @@ export const SearchCarouselAnime = () => {
 								>
 									<AnimeItem
 										id={item.id}
-										img={`${import.meta.env.VITE_PROXY_URL}${
-											item.posters.medium.url
-										}`}
+										img={`${getImageWithProxy(item.posters.medium.url)}`}
 										title={item.names.ru}
 									/>
 								</CarouselItem>
