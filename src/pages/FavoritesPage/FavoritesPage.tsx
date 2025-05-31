@@ -16,7 +16,9 @@ export const FavoritesPage = () => {
 						<AnimeItem
 							key={favorite.id}
 							id={favorite.id}
-							img={favorite.posters.medium.url}
+							img={`${import.meta.env.VITE_STORAGE_URL}${
+								favorite.posters.medium.url
+							}`}
 							title={favorite.names.ru}
 						/>
 					))}

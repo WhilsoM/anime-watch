@@ -1,5 +1,19 @@
+@use '@/app/styles/global' as *;
+
 .favoritesList {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
 	gap: 1.5rem;
+}
+
+@media (max-width: $tablet) {
+	.favoritesList {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+@media (max-width: $mobile) {
+	.favoritesList {
+		grid-template-columns: 1fr;
+	}
 }

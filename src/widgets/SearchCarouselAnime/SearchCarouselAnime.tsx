@@ -1,5 +1,4 @@
 import type { RootState } from '@/app/store'
-import { getImageWithProxy } from '@/features/getImageWithProxy'
 import {
 	Carousel,
 	CarouselContent,
@@ -20,7 +19,7 @@ export const SearchCarouselAnime = () => {
 				<article className={s.searchedAnime} role='searched-animes'>
 					<h2 className='section-title'>Поиск аниме</h2>
 
-					<Carousel className='w-full'>
+					<Carousel className='w-2xl md:w-5xl lg:w-full'>
 						<CarouselContent className='-ml-1'>
 							{state.map((item) => (
 								<CarouselItem
@@ -29,7 +28,9 @@ export const SearchCarouselAnime = () => {
 								>
 									<AnimeItem
 										id={item.id}
-										img={`${getImageWithProxy(item.posters.medium.url)}`}
+										img={`${import.meta.env.VITE_STORAGE_URL}${
+											item.posters.small.url
+										}`}
 										title={item.names.ru}
 									/>
 								</CarouselItem>

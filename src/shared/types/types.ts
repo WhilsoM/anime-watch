@@ -28,14 +28,10 @@ export interface AnimeByIdData {
 			url: string
 		}
 	}
-	team: {
-		voice: string[]
-		translator: string[]
-		editing: string[]
-		decor: string[]
-		timing: string[]
-	}
+	team: Record<TTeam, string[]>
+
 	genres: string[]
+
 	franchises: {
 		franchise: {
 			id: string
@@ -51,12 +47,20 @@ export interface AnimeByIdData {
 	}[]
 
 	player: {
+		episodes: {
+			first: number
+			last: number
+		}
 		alternative_player: string
 		list: Record<number, Episode>
 	}
 }
 
 export type TPlayerAnime = Pick<AnimeByIdData, 'player'>
+
+type TTeam = 'voice' | 'translator' | 'editing' | 'decor' | 'timing'
+
+export type TQuality = 'fhd' | 'hd' | 'sd'
 
 type Episode = {
 	episode: number
@@ -67,9 +71,5 @@ type Episode = {
 		opening: string[]
 		ending: string[]
 	}
-	hls: {
-		fhd: string
-		hd: string
-		sd: string
-	}
+	hls: Record<TQuality, string>
 }

@@ -3,14 +3,80 @@
 .sidebar {
 	border-right: 1px solid var(--border-color);
 	background-color: var(--bg-color);
-	min-width: 10rem;
-	padding: 1rem 2rem;
+	padding: 0.7rem 0.5rem;
 	flex-shrink: 0;
-	& nav {
-		position: fixed;
-	}
+
 	&__link {
 		margin-bottom: 1rem;
 		font-size: var(--text-link-size);
+
+		a {
+			display: flex;
+			gap: 0.5rem;
+			align-items: center;
+		}
+	}
+}
+.hideNavList {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+
+	animation: transitionNavList 0.6s normal linear;
+}
+
+.hide {
+	width: 3.5rem;
+	overflow: hidden;
+	animation: hide 0.3s normal ease-out;
+}
+
+.show {
+	width: 10rem;
+	animation: show 0.3s normal ease-out;
+	overflow: auto;
+}
+
+@media (max-width: $mobile) {
+	.sidebar {
+		padding: 0.4rem 0.5rem;
+	}
+}
+
+@keyframes transitionNavList {
+	from {
+		display: block;
+		align-items: center;
+	}
+
+	to {
+		display: flex;
+		justify-content: center;
+		flex-direction: column;
+		align-items: center;
+	}
+}
+
+@keyframes show {
+	from {
+		width: 3.5rem;
+		overflow: hidden;
+	}
+	10% {
+		overflow: hidden;
+	}
+
+	to {
+		width: 10rem;
+	}
+}
+
+@keyframes hide {
+	from {
+		width: 10rem;
+	}
+	to {
+		width: 3.5rem;
 	}
 }

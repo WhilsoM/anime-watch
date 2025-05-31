@@ -52,9 +52,9 @@ export const AnimeByIdPage = () => {
 				<div>
 					<img
 						className={s.poster}
-						src={`${import.meta.env.VITE_PROXY_URL}${
+						src={`${import.meta.env.VITE_STORAGE_URL}${
 							animeById?.posters.small.url
-						}}`}
+						}`}
 						alt={animeById?.names.en}
 					/>
 					<Button
