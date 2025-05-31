@@ -9,7 +9,6 @@ import {
 import { useSelector } from 'react-redux'
 import { AnimeItem } from '../AnimeItem/AnimeItem'
 import s from './searchcarouselanime.module.scss'
-
 export const SearchCarouselAnime = () => {
 	const state = useSelector((state: RootState) => state.search)
 

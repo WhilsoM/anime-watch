@@ -21,30 +21,25 @@ export const SelectorQuality = ({
 	setSelectedQuality,
 	episode,
 }: SelectorQualityProps) => {
+	const epIndex = Number(episode)
+	const hls = animeData?.player.list?.[epIndex]?.hls
+
 	return (
-		<Select defaultValue={selectedQuality} onValueChange={setSelectedQuality}>
-			<SelectTrigger className='w-[180px]'>
-				<SelectValue placeholder='Quality' />
+		<Select
+			defaultValue={selectedQuality}
+			onValueChange={(value: string) => setSelectedQuality(value as TQuality)}
+		>
+			<SelectTrigger className='w-44'>
+				<SelectValue placeholder='Качество' />
 			</SelectTrigger>
 			<SelectContent>
-				<SelectItem
-					disabled={animeData?.player.list[Number(episode)]?.hls['fhd'] == null}
-					value='fhd'
-				>
+				<SelectItem value='fhd' disabled={!hls?.fhd}>
 					FHD
 				</SelectItem>
-
-				<SelectItem
-					disabled={animeData?.player.list[Number(episode)]?.hls['hd'] == null}
-					value='hd'
-				>
+				<SelectItem value='hd' disabled={!hls?.hd}>
 					HD
 				</SelectItem>
-
-				<SelectItem
-					disabled={animeData?.player.list[Number(episode)]?.hls['sd'] == null}
-					value='sd'
-				>
+				<SelectItem value='sd' disabled={!hls?.sd}>
 					SD
 				</SelectItem>
 			</SelectContent>

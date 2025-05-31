@@ -13,16 +13,18 @@ import {
 } from '@/shared/UI/carousel'
 import { AnimePlayer } from '@/widgets/AnimePlayer/AnimePlayer'
 import { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router'
+import { Link, useNavigate, useParams } from 'react-router'
+import s from './animeplayer.module.scss'
 import { SelectorQuality } from './UI/SelectorQuality'
 
 export const AnimePlayerPage = () => {
 	const { id, episode } = useParams<{ id: string; episode: string }>()
 	const [animeData, setAnimeData] = useState<TPlayerAnime>()
 	const [selectedQuality, setSelectedQuality] = useState<TQuality>('sd')
+	const navigate = useNavigate()
 
 	const episodesList = Array.from(
-		{ length: animeData?.player.episodes.last },
+		{ length: animeData?.player.episodes.last || 0 },
 		(_, i) => i + 1
 	)
 
@@ -51,44 +53,60 @@ export const AnimePlayerPage = () => {
 		}`
 
 	return (
-		<div className='flex flex-col items-center gap-4 p-4'>
-			<h2 className='section-title'></h2>
+		<div className={`${s.animePlayerPage}`}>
+			<Button className={s.back} onClick={() => navigate(-1)}>
+				Назад
+			</Button>
+
+			<h1 className='section-title text-center'>Просмотр аниме</h1>
+
 			{animeData?.player.alternative_player !== null ? (
 				<iframe
-					src={`${animeData?.player.alternative_player}`}
-					width='607'
-					height='360'
+					src={animeData?.player.alternative_player}
+					width='100%'
+					height='480'
+					className='rounded-xl shadow-lg border'
 					allowFullScreen
 					allow='autoplay *; fullscreen *'
 				></iframe>
 			) : (
 				<>
-					<article className='flex gap-4'>
+					<div className='flex flex-col md:flex-row items-center gap-6'>
 						<AnimePlayer src={videoSrc} />
+						<div>
+							<h3 className='text-2xl mb-1'>Качество</h3>
+							<SelectorQuality
+								animeData={animeData}
+								episode={episode}
+								selectedQuality={selectedQuality}
+								setSelectedQuality={setSelectedQuality}
+							/>
+						</div>
+					</div>
 
-						<SelectorQuality
-							animeData={animeData}
-							episode={episode}
-							selectedQuality={selectedQuality}
-							setSelectedQuality={setSelectedQuality}
-						/>
-					</article>
-
-					<Carousel className='w-2xl md:w-2xl'>
-						<CarouselContent className=''>
-							{episodesList.map((item, i) => (
-								<CarouselItem className='ml-8 basis-auto' key={i}>
-									<Button>
-										<Link to={`/anime-title/${id}/${Number(episode) + 1}`}>
-											{String(item)}
+					<div className={s.chooseEpisode}>
+						<h2 className='text-black text-xl font-semibold mb-4 dark:text-white'>
+							Выберите серию
+						</h2>
+						<Carousel className={s.carouselWrapper}>
+							<CarouselContent className='flex gap-2'>
+								{episodesList.map((ep) => (
+									<CarouselItem key={ep} className={`${s.carouselItem}`}>
+										<Link to={`/anime-title/${id}/${ep}`}>
+											<Button
+												variant={Number(episode) === ep ? 'default' : 'outline'}
+												className='min-w-[48px]  px-4 py-2 bg-gray-100 text-black dark:bg-neutral-700 dark:text-white dark:hover:bg-neutral-50'
+											>
+												{ep}
+											</Button>
 										</Link>
-									</Button>
-								</CarouselItem>
-							))}
-						</CarouselContent>
-						<CarouselPrevious className='left-2' />
-						<CarouselNext className='right-2' />
-					</Carousel>
+									</CarouselItem>
+								))}
+							</CarouselContent>
+							<CarouselPrevious className='left-2 bg-gray-200 text-black dark:bg-neutral-700 dark:text-white hover:bg-gray-300 dark:hover:bg-neutral-600 rounded-full shadow-md' />
+							<CarouselNext className='right-2 bg-gray-200 text-black dark:bg-neutral-700 dark:text-white hover:bg-gray-300  dark:hover:bg-neutral-600 rounded-full shadow-md' />
+						</Carousel>
+					</div>
 				</>
 			)}
 		</div>

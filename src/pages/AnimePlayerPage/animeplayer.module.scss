@@ -1,0 +1,46 @@
+@use '@/app/styles/global' as *;
+
+.carouselWrapper {
+	width: 500px;
+}
+.back {
+	align-self: flex-start;
+}
+.animePlayerPage {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	padding: 1rem;
+	margin: 0 auto;
+}
+.carouselItem {
+	flex-basis: auto;
+}
+@media (min-width: 769px) {
+	.carouselItem {
+		&:first-of-type {
+			margin-left: 3rem;
+		}
+	}
+}
+
+@media (max-width: $tablet) {
+	.chooseEpisode {
+		margin: 0 auto;
+	}
+	.carouselWrapper {
+		width: 300px;
+	}
+}
+
+@media (max-width: $mobile) {
+	.carouselItem {
+		width: 100%;
+		margin-left: 3rem;
+		margin-right: 3rem;
+		button {
+			display: block;
+			width: 100%;
+		}
+	}
+}

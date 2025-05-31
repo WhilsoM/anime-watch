@@ -47,7 +47,11 @@ export const Header = () => {
 							name='search'
 							className={s.searchAnime}
 						/>
-						<Button onClick={searchAnimeHandle} variant={'ghost'}>
+						<Button
+							className={s.btnSearchAnime}
+							onClick={searchAnimeHandle}
+							variant={'ghost'}
+						>
 							<Search
 								className={s.loupe}
 								color={isDarkTheme ? 'white' : 'black'}

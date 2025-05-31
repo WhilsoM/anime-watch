@@ -35,8 +35,7 @@ export const AnimePlayer: React.FC<AnimePlayerProps> = ({ src }) => {
 		<video
 			ref={videoRef}
 			controls
-			width={607}
-			height={360}
+			className='w-[400px] h-[300px] md:w-[500px]'
 			style={{ backgroundColor: 'black' }}
 		/>
 	)

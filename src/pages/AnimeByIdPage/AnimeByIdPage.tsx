@@ -6,6 +6,7 @@ import {
 import type { AnimeByIdData } from '@/shared/types/types'
 import { Button } from '@/shared/UI/button'
 import { Heart } from 'lucide-react'
+import { motion } from 'motion/react'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useParams } from 'react-router'
@@ -50,7 +51,11 @@ export const AnimeByIdPage = () => {
 		<section role='info-anime'>
 			<article role='main-info' className={s.mainInfo}>
 				<div>
-					<img
+					<motion.img
+						initial={{ scale: 0 }}
+						animate={{ scale: 1 }}
+						whileHover={{ scale: 0.9 }}
+						whileTap={{ scale: 0.95 }}
 						className={s.poster}
 						src={`${import.meta.env.VITE_STORAGE_URL}${
 							animeById?.posters.small.url
@@ -70,10 +75,14 @@ export const AnimeByIdPage = () => {
 					</Button>
 				</div>
 
-				<div className={s.info}>
-					<h2 className={`section-title ${s.title}`}>
+				<motion.div className={s.info}>
+					<motion.h2
+						initial={{ scale: 0 }}
+						animate={{ scale: 1 }}
+						className={`section-title ${s.title}`}
+					>
 						{animeById?.names.ru ?? 'Не указан'}
-					</h2>
+					</motion.h2>
 					<ul className={s.infoAboutTitle}>
 						<li className={s.info__li}>
 							Кол-во эпизодов: <p>{animeById?.type.episodes ?? 'Не указан'}</p>
@@ -106,21 +115,25 @@ export const AnimeByIdPage = () => {
 							>
 								{animeById?.description}
 							</p>
-							<Button
-								variant={'secondary'}
-								onClick={() => setIsClicked((prev) => !prev)}
+							<motion.div
+								whileHover={{ scale: 0.9 }}
+								whileTap={{ scale: 1 }}
+								className='w-max'
 							>
-								{isClicked ? 'Свернуть' : 'Подробнее...'}
-							</Button>
+								<Button
+									variant={'secondary'}
+									onClick={() => setIsClicked((prev) => !prev)}
+								>
+									{isClicked ? 'Свернуть' : 'Подробнее...'}
+								</Button>
+							</motion.div>
 						</li>
 					</ul>
-				</div>
+				</motion.div>
 			</article>
 
 			<Link to={`/anime-title/${animeById?.id}/1`}>
-				<button className='mt-4 bg-blue-500 text-white px-4 py-2 rounded'>
-					Смотреть
-				</button>
+				<Button className='cursor-pointer'>Смотреть</Button>
 			</Link>
 		</section>
 	)
